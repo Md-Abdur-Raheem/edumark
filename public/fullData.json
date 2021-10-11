@@ -1,0 +1,14 @@
+[
+    {"courseId":1,"courseName":"Mobile App design step by step from beginner","category":"Photoshop","thumbs":"https://preview.colorlib.com/theme/edumark/img/courses/x1.png.pagespeed.ic.uOVeOynzNX.webp","rating":4.5,"price":49},
+    {"courseId":2,"courseName":"UI/UX design with Adobe XD with Anderson","category":"Adobe XD","thumbs":"https://preview.colorlib.com/theme/edumark/img/courses/x2.png.pagespeed.ic.sDlQOJ2rvH.webp","rating":4,"price":44},
+    {"courseId":3,"courseName":"Wordpress theme development from Scratch","category":"Web Development","thumbs":"https://preview.colorlib.com/theme/edumark/img/courses/x3.png.pagespeed.ic.uVBnwRYazf.webp","rating":4.5,"price":49},
+    {"courseId":4,"courseName":"Android app design","category":"App Development","thumbs":"https://preview.colorlib.com/theme/edumark/img/courses/x4.png.pagespeed.ic.FtCOfZfzTr.webp","rating":4.3,"price":47},
+    {"courseId":5,"courseName":"How to complete user research and make workflow","category":"User Research","thumbs":"https://preview.colorlib.com/theme/edumark/img/courses/x5.png.pagespeed.ic.qVnhy4fiZ1.webp","rating":4.4,"price":49},
+    {"courseId":6,"courseName":"Commitment to dedicated support","category":"User Research","thumbs":"https://preview.colorlib.com/theme/edumark/img/courses/x6.png.pagespeed.ic.Dr-JOOAkG3.webp","rating":4.1,"price":44},
+    {"courseId":7,"courseName":"Database -DML Statements and SQL Server administration","category":"Database Management","thumbs":"https://cdn01.alison-static.net/courses/1429/alison_courseware_intro_1429.jpg","rating":4,"price":46},
+    {"courseId":8,"courseName":"NIST Cyber security framework foundation ","category":"Cyber Security","thumbs":"https://cdn01.alison-static.net/courses/2775/alison_courseware_intro_2775.jpg","rating":4.5,"price":49},
+    {"courseId":9,"courseName":"Introduction to Microsoft Word 2019/365","category":"Microsoft Office","thumbs":"https://cdn01.alison-static.net/courses/2486/alison_courseware_intro_2486.jpg","rating":4.4,"price":47},
+    {"courseId":10,"courseName":"Computer Networking- Digital Network Security","category":"Networking","thumbs":"https://cdn01.alison-static.net/courses/1447/alison_courseware_intro_1447.jpg","rating":4.4,"price":48},
+    {"courseId":11,"courseName":"Introduction to Multiple domain hosting on One virtual server","category":"Web Hosting","thumbs":"https://cdn01.alison-static.net/courses/3953/alison_courseware_intro_3953.jpg","rating":4.6,"price":49},
+    {"courseId":12,"courseName":"Introduction to Microsoft Outlook 2019","category":"Microsoft Office","thumbs":"https://cdn01.alison-static.net/courses/2585/alison_courseware_intro_2585.jpg","rating":4.5,"price":47}
+]

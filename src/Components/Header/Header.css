@@ -1,0 +1,25 @@
+.navigation{
+    background: linear-gradient(90deg, hsla(272, 81%, 61%, 1) 0%, hsla(257, 76%, 55%, 1) 100%);;
+    color: white;
+    line-height: 50px;
+    border-bottom: 1px dashed white;
+}
+.icon{
+    margin: 30px 0px 0px 150px;
+}
+.phone{
+    margin: 15px 30px;
+    border: 1px solid #fbbe36;
+    padding: 10px 20px;
+    border-radius: 50px;
+    background-color: #fbbe36;
+    line-height: 18px;
+    height: 40px;
+}
+.phone:hover{
+    background-color: transparent;
+    color: #fbbe36;
+}
+.selected{
+    border-bottom: 5px solid #04d2c8;
+}

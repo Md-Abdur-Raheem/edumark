@@ -1,0 +1,33 @@
+.card-container{
+    width: 350px;
+}
+.card-title:hover{
+    color: #fbbe36;
+    transition: color .25s ease 0s;
+}
+.thumbs-container{
+    overflow: hidden;
+}
+.course-thumbs:hover{
+    transform: scale(1.1);
+    transition: transform .25s ease 0s;
+    cursor: pointer;
+}
+.start-btn{
+    background-color: #04d2c8;
+    border: none;
+    border-radius: 50px;
+    padding: 10px;
+    margin-left: 80px
+}
+.start-btn:hover{
+    background-color: transparent;
+    color: #04d2c8;
+    border: 1px solid #04d2c8;
+}
+.foot{
+    background-color: white;
+}
+.star{
+    color: goldenrod;
+}
