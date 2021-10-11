@@ -23,7 +23,7 @@ const Home = () => {
                 <img src={img} alt="" />
                 <div className="ms-5 text-start">
                     <h1 className = "mb-5">Learn Your <br />Favorite Course <br />From Online</h1>
-                    <Button onClick = {handleBrowseBtn} className = "browse-btn mt-1">Browse Our Courses</Button>
+                    <Button onClick = {handleBrowseBtn} className = "more-btn mt-1">Browse Our Courses</Button>
                 </div>
                 </Container>
             </div>

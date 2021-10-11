@@ -10,7 +10,7 @@
 }
 .course-thumbs:hover{
     transform: scale(1.1);
-    transition: transform .25s ease 0s;
+    transition: transform .30s ease 0s;
     cursor: pointer;
 }
 .start-btn{
@@ -29,5 +29,5 @@
     background-color: white;
 }
 .star{
-    color: goldenrod;
+    color: rgb(245, 189, 49);
 }

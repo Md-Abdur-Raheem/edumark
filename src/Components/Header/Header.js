@@ -13,7 +13,7 @@ const Header = () => {
         fontSize: '18px'
     }
     return (
-        <div>
+        <header>
             <Navbar expand="lg" className="navigation">
                 <Container>
                     <Navbar.Brand href="/home"><img src= {img} alt="" /></Navbar.Brand>
@@ -30,7 +30,7 @@ const Header = () => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-        </div>
+        </header>
     );
 };
 

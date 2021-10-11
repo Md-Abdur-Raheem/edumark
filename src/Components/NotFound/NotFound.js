@@ -10,7 +10,7 @@ const NotFound = () => {
         history.push('/home');
     }
     return (
-        <div>
+        <div className = "not-found">
             <img className="my-5" id="lost" src={img} alt="" />
             <h1 className = "mb-5">Sorry!!! Page not found</h1>
             <Button onClick = {handleClick} className = "login-btn">Back To Home</Button>

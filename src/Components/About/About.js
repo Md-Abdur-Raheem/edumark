@@ -1,9 +1,10 @@
 import React from 'react';
 import { Card, CardGroup } from 'react-bootstrap';
+import './About.css'
 
 const About = () => {
     return (
-        <div>
+        <div className = "about-container">
             <h1 className="my-5">A power for good</h1>
             <p className="mx-5"> We believe that education, more than anything, has the power to break through boundaries and transform lives. <br /> Edumark is one of the world’s largest learning platforms for education and skills training. It is a for-profit social enterprise dedicated to making it possible for anyone, to study anything, anywhere, at any time, at any subject level. Through our mission we are a catalyst for positive social change, creating opportunity, prosperity, and equality for everyone.</p>
             

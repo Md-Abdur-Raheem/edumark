@@ -4,7 +4,7 @@ import img from '../../media/logo.png'
 
 const Footer = () => {
     return (
-        <div className="footer mt-5 pb-3">
+        <footer className="footer pb-3">
             <h5 className = "mt-5"    style={{ display: "inline-block", marginRight: "10px" }}>Connect With </h5>
             <img src= {img} alt="" />
             <div className = "icon-container my-5">
@@ -16,7 +16,7 @@ const Footer = () => {
             <div>
                 <small className = "text-dark">Copyright ©2021 All rights reserved | This site is made with <i className="far fa-heart"></i> by A. Raheem</small>
             </div>
-        </div>
+        </footer>
     );
 };
 

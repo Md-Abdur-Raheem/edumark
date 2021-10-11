@@ -1,32 +1,44 @@
 import React from 'react';
-import { Form, Button, Container } from 'react-bootstrap';
+import { useForm } from "react-hook-form";
+import { NavLink } from 'react-router-dom';
+import img from '../../media/login.png';
+import google from '../../media/google.png'
+import facebook from '../../media/facebook.png'
 import './Login.css';
 
 const Login = () => {
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const onSubmit = data => console.log(data);
     return (
-        <Container className="w-25 mt-5">
-            <h3 className = "mb-5">Please login to start your course</h3 >
-                <Form>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" />
-                        <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                        </Form.Text>
-                    </Form.Group>
-
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Check me out" />
-                    </Form.Group>
-                    <Button className = "login-btn" type="submit">
-                        Log In
-                    </Button>
-                </Form>
-            </Container>
+        <div className = "login-container">
+            <div className = "d-flex justify-content-center align-items-center h-75">
+                <div className ="img-container"><img src={img} alt=""/></div>
+                <div className="form-container">
+                    <h5 className = "welcome text-start">Welcome back</h5>
+                    <h5 className = "login">Login to your account</h5>
+                    <form className = "login-form d-flex flex-column " onSubmit={handleSubmit(onSubmit)}>
+                        
+                        <input placeholder = "Email" {...register("example")} />
+                        
+                        
+                        <input placeholder = "Password" {...register("exampleRequired", { required: true })} />
+                        
+                        {errors.exampleRequired && <span style={{color:"red", margin:"10px"}}>This field is required</span>}
+                        
+                        <button className = "w-25 login-btn btn" type="submit">Login</button>
+                    </form>
+                    <br />
+                    <p><NavLink className="create" to="/create-account">Create Account</NavLink></p>
+                    <div>
+                        <p>Or login with</p>
+                        <NavLink className="login-logo" to="/create-account"><img src={google} alt="" /></NavLink>
+                        <NavLink className="login-logo" to="/create-account"><img src={facebook} alt="" /></NavLink>
+                    </div>
+                    <br />
+                    <p><NavLink className="create" to="/create-account">Forgot password?</NavLink></p>
+                </div>
+            </div>
+        </div>
     );
 };
 
