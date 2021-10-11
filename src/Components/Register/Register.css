@@ -1,0 +1,49 @@
+.reg-form-container{
+    background-color: rgb(255, 255, 255);
+    height: 106%;
+    width: 30%;
+    padding: 10px 0px 10px 0px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+.register{
+    background: linear-gradient(90deg, hsla(272, 81%, 61%, 1) 0%, hsla(257, 76%, 55%, 1) 100%);
+    width: fit-content;
+    color: white;
+    margin-left: 409.4px;
+    padding: 5px 15px 10px 25px;
+    border-top-left-radius: 20px ;
+    border-bottom-left-radius: 20px ;
+}
+.sign{
+    color: #6f3dde;
+    margin-top: 50px;
+}
+.reg-form input{
+    background-color: transparent;
+    border-bottom: 2px solid #6f3dde;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    margin:20px 40px ;
+    outline: none;
+}
+.reg-form button{
+    position: relative;
+    left: 36%;
+}
+.reg-img-container{
+    background: linear-gradient(90deg, hsla(272, 81%, 61%, 1) 0%, hsla(257, 76%, 55%, 1) 100%);
+    background-size: cover;
+    background-position: center;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    width: 30%;
+    height: 106%;
+    overflow: hidden;
+}
+.reg-img-container img{
+width: 100%;
+height: 100%;
+object-fit: cover;
+}

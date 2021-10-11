@@ -11,9 +11,24 @@ header{
     line-height: 50px;
     border-bottom: 1px dashed white;
 }
+
+.user-photo{
+    width: 20%;
+    border-radius: 50%;
+}
+
+.selected{
+    border-bottom: 5px solid #04d2c8;
+}
+.dynamic-selected{
+    margin-bottom: 5px;
+    border-bottom: 5px solid #04d2c8;
+}
+
 .icon{
     margin: 30px 0px 0px 150px;
 }
+
 .phone{
     margin: 15px 30px;
     border: 1px solid #fbbe36;
@@ -23,10 +38,9 @@ header{
     line-height: 18px;
     height: 40px;
 }
+
 .phone:hover{
     background-color: transparent;
     color: #fbbe36;
 }
-.selected{
-    border-bottom: 5px solid #04d2c8;
-}
+
