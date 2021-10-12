@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 import { NavLink } from 'react-router-dom';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import img from '../../media/login.png';
 import google from '../../media/google.png'
 import facebook from '../../media/facebook.png'
@@ -8,9 +9,21 @@ import './Login.css';
 import useAuth from '../../hooks/useAuth/useAuth';
 
 const Login = () => {
-    const { loginWithGoogle } = useAuth();
+    const auth = getAuth();
+    const { loginWithGoogle, setError, error } = useAuth();
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    const onSubmit = data => {
+        const { email, password } = data;
+        console.log(data);
+        signInWithEmailAndPassword(auth, email, password)
+            .then(result => {
+                console.log(result);
+                setError('');
+            })
+            .catch(error => {
+            setError(error.message);
+        })
+    }
 
     return (
         <div className = "login-container">
@@ -21,12 +34,14 @@ const Login = () => {
                     <h5 className = "login">Login to your account</h5>
                     <form className = "login-form d-flex flex-column " onSubmit={handleSubmit(onSubmit)}>
                         
-                        <input type="email" placeholder = "Email" {...register("example", { required: true })} />
+                        <input type="email" placeholder = "Email" {...register("email", { required: true })} />
                         
                         
-                        <input type="password" placeholder = "Password" {...register("exampleRequired", { required: true })} />
+                        <input type="password" placeholder = "Password" {...register("password", { required: true })} />
                         
-                        {errors.exampleRequired && <span style={{color:"red", margin:"10px"}}>This field is required</span>}
+                        {errors.exampleRequired && <span style={{ color: "red", margin: "10px" }}>This field is required</span>}
+                        
+                        <p style={{color:"red"}}>{error}</p>
                         
                         <button className = "w-25 login-btn btn" type="submit">Login</button>
                     </form>

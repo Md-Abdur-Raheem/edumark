@@ -14,6 +14,7 @@ import Login from './Components/Login/Login';
 import Register from './Components/Register/Register';
 import NotFound from './Components/NotFound/NotFound';
 import AuthProvider from './context/AuthProvider';
+import Cart from './Components/Cart/Cart';
 
 
 
@@ -36,11 +37,14 @@ function App() {
             <Route path = "/contact">
               <Contact></Contact>
             </Route>
-            <Route path ="/login">
-              <Login></Login>
+            <Route path="/cart">
+              <Cart></Cart>
             </Route>
             <Route path ="/register">
               <Register></Register>
+            </Route>
+            <Route path ="/login">
+              <Login></Login>
             </Route>
             <Route exact path = "/">
               <Home></Home>

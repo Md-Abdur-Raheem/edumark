@@ -10,6 +10,7 @@ header{
     color: white;
     line-height: 50px;
     border-bottom: 1px dashed white;
+    width: 100%;
 }
 
 .user-photo{

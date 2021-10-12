@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Register.css'
 import { useForm } from "react-hook-form";
 import img from '../../media/register.jpg';
@@ -6,45 +6,53 @@ import google from '../../media/google.png';
 import facebook from '../../media/facebook.png';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth/useAuth';
-import { getAuth, createUserWithEmailAndPassword  } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile  } from "firebase/auth";
 
 
 const Register = () => {
-    const [name, setName] = useState();
-    const [userEmail, setEmail] = useState();
-    const [userPassword, setPassword] = useState();
 
-    const { loginWithGoogle, error, setError } = useAuth();
+    const { loginWithGoogle, error, setError, setUser } = useAuth();
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = data => {
-        const { name, email, password, rePassword } = data;
+        const auth = getAuth();
+        const { name, email, password, rePassword, photo } = data;
+        console.log(photo[0].name);
 
         if (password !== rePassword) {
-            
             setError("Password doesn't match");
             return;
         }
         else {
             setError('');
-            setName(name);
-            setEmail(email);
-            setPassword(password);
 
-            const auth = getAuth();
-            createUserWithEmailAndPassword(auth, userEmail, userPassword)
+            createUserWithEmailAndPassword(auth, email, password)
             .then((result) => {
                 console.log(result.user);
+                setUser(result.user);
+                setUserName();
             })
             .catch((error) => {
                 setError(error.message)
             });
         }
+
+        const setUserName = () => {
+            updateProfile(auth.currentUser, {
+                displayName: name, photoURL : photo[0].name
+            })
+                .then((result) => {
+                    console.log(result);
+                })
+                .catch((error) => {
+                    setError(error.message);
+              });
+        }
     }
 
     return (
-        <div className = "login-container">
+        <div className = "reg-container">
             <div className = "d-flex justify-content-center align-items-center h-75">
                 <div className="reg-form-container">
                     <h5 className = "register text-end">Register Now</h5>
@@ -57,7 +65,12 @@ const Register = () => {
                         
                         <input type="password" placeholder="Password" {...register("password", { required: true })} />
                         
-                        <input type="password" placeholder = "Re enter password" {...register("rePassword", { required: true })} />
+                        <input type="password" placeholder="Re enter password" {...register("rePassword", { required: true })} />
+                        
+                        <div>
+                            <h6 style={{display: 'inline-block'}}>Photo</h6>
+                            <input style={{ border: "none", backgroundColor: "#6f3dde", color: "white", width:"fit-content"}} type="file" name = "Profile picture" ref={register} {...register("photo")} />
+                        </div>
                         
                         {errors.exampleRequired && <span style={{color:"red", margin:"10px"}}>This field is required</span>}
                         <p style={{color:"red"}}>{error}</p>

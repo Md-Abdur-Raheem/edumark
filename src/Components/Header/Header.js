@@ -27,13 +27,14 @@ const Header = () => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <NavLink style = {linkStyle} activeStyle={selected} to="/home">Home</NavLink>
-                        <NavLink style = {linkStyle} activeStyle={selected} to="/courses">Courses</NavLink>
-                        <NavLink style = {linkStyle} activeStyle={selected} to="/about">About</NavLink>
-                        <NavLink style = {linkStyle} activeStyle={selected} to="/contact">Contact</NavLink>
+                        <NavLink style = {linkStyle} activeStyle={selected} to="/home"><i class="fas fa-home me-1"></i> Home</NavLink>
+                        <NavLink style = {linkStyle} activeStyle={selected} to="/courses"><i class="fas fa-book-open me-1"></i> Courses</NavLink>
+                        <NavLink style = {linkStyle} activeStyle={selected} to="/about"><i class="fas fa-info-circle me-1"></i> About</NavLink>
+                        <NavLink style = {linkStyle} activeStyle={selected} to="/contact"><i class="fas fa-envelope me-1"></i> Contact</NavLink>
+                        <NavLink style = {linkStyle} activeStyle={selected} to="/cart"><i class="fas fa-shopping-cart me-1"></i> Cart</NavLink>
                             {
-                                user.email ? <NavLink onClick = {logOut} style={linkStyle} to="/home"><img className="user-photo me-1" src={user.photoURL} alt="" title = {user.displayName}></img> Log Out</NavLink>
-                                           : <div><NavLink style = {linkStyle} activeStyle={selected} to="/register"><i className="fas fa-user-plus me-1"></i> Register</NavLink><NavLink style={linkStyle} activeStyle={selected} to="/login"><i className="fas fa-user me-1"></i> Log In</NavLink></div>
+                                user.email ? <NavLink onClick = {logOut} style={linkStyle} to="/home"><img className="user-photo me-1" src={user.photoURL || img} alt="" title = {user.displayName}></img> Log Out</NavLink>
+                                           : <div><NavLink style = {linkStyle} activeStyle={selected} to="/register"><i className="fas fa-user-plus me-1"></i>Register</NavLink><NavLink style={linkStyle} activeStyle={selected} to="/login"><i className="fas fa-user me-1"></i> Log In</NavLink></div>
                             }
                         <p className = "phone"><i className="fas fa-phone-alt"></i> +880 1700 08 00 10 07</p>                            
                     </Nav>
