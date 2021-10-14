@@ -5,38 +5,46 @@
     background-size: cover;
     background-position: center;
 }
+
 .hero-container img{
     width: 580px;
     height: 500px;
     object-fit: cover;
 }
+
 .hero-container div h1{
     font-size: 80px;
     color: white;
     display: block;
     font-weight: 450;
 }
+
 .browse-btn{
     background-color: #04d2c8;
     border: none;
     border-radius: 50px;
     padding: 15px 40px;
 }
+
 .browse-btn:hover{
     background-color: transparent;
     color: #04d2c8;
     border: 1px solid #04d2c8;
 }
-.tutorials{
+
+/* .tutorials{
     height: 700px;
-}
+} */
+
 .tutorials div img{
     width: 680px;
     height: 610px;
     object-fit: cover;
 }
+
 .tutorials div h1{
     font-size: 50px;
     display: block;
     font-weight: 450;
 }
+

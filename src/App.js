@@ -25,6 +25,9 @@ function App() {
         <Router>
           <Header></Header>
           <Switch>
+            <Route exact path = "/">
+              <Home></Home>
+            </Route>
             <Route path = "/home">
               <Home></Home>
             </Route>
@@ -45,9 +48,6 @@ function App() {
             </Route>
             <Route path ="/login">
               <Login></Login>
-            </Route>
-            <Route exact path = "/">
-              <Home></Home>
             </Route>
             <Route path = "*">
               <NotFound></NotFound>

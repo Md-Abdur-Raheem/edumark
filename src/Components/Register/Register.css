@@ -1,6 +1,6 @@
 .reg-container{
     padding-top: 200px;
-    height: 120vh;
+    height: 125vh;
     background-image: url('../../media/background.png');
     background-repeat: no-repeat;
     background-size: cover;
@@ -18,7 +18,7 @@
     background: linear-gradient(90deg, hsla(272, 81%, 61%, 1) 0%, hsla(257, 76%, 55%, 1) 100%);
     width: fit-content;
     color: white;
-    margin-left: 409.4px;
+    margin-left: 357.5px;
     padding: 5px 15px 10px 25px;
     border-top-left-radius: 20px ;
     border-bottom-left-radius: 20px ;

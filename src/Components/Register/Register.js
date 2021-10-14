@@ -6,7 +6,7 @@ import google from '../../media/google.png';
 import facebook from '../../media/facebook.png';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth/useAuth';
-import { getAuth, createUserWithEmailAndPassword, updateProfile  } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from "firebase/auth";
 
 
 const Register = () => {
@@ -18,7 +18,7 @@ const Register = () => {
     const onSubmit = data => {
         const auth = getAuth();
         const { name, email, password, rePassword, photo } = data;
-        console.log(photo[0].name);
+        // console.log(photo[0].name);
 
         if (password !== rePassword) {
             setError("Password doesn't match");
@@ -29,18 +29,25 @@ const Register = () => {
 
             createUserWithEmailAndPassword(auth, email, password)
             .then((result) => {
-                console.log(result.user);
                 setUser(result.user);
+                verifyEmail();
                 setUserName();
+                alert(`A verification email has been sent to ${email}`);
             })
             .catch((error) => {
                 setError(error.message)
             });
         }
 
+        const verifyEmail = () => {
+            sendEmailVerification(auth.currentUser)
+            .then(() => {
+            });
+        }
+
         const setUserName = () => {
             updateProfile(auth.currentUser, {
-                displayName: name, photoURL : photo[0].name
+                displayName: name,/*  photoURL : photo[0].name */
             })
                 .then((result) => {
                     console.log(result);

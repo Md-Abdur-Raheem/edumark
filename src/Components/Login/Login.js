@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
-import { NavLink } from 'react-router-dom';
+import { NavLink, } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import img from '../../media/login.png';
 import google from '../../media/google.png'
@@ -10,14 +10,19 @@ import useAuth from '../../hooks/useAuth/useAuth';
 
 const Login = () => {
     const auth = getAuth();
-    const { loginWithGoogle, setError, error } = useAuth();
+    const { loginWithGoogle, loginWithFacebook, setError, error, setUser} = useAuth();
     const { register, handleSubmit, formState: { errors } } = useForm();
+    // const history = useHistory();
+
     const onSubmit = data => {
         const { email, password } = data;
-        console.log(data);
+        // console.log(data);
+
         signInWithEmailAndPassword(auth, email, password)
             .then(result => {
                 console.log(result);
+                const user = result.user;
+                user.emailVerified ? setUser(user) : alert('Email is not verifiefd yet');
                 setError('');
             })
             .catch(error => {
@@ -50,7 +55,7 @@ const Login = () => {
                     <div>
                         <p><b>Or log in with</b></p>
                         <NavLink onClick = {loginWithGoogle} className="login-logo" to="/home"><img src={google} alt="" /></NavLink>
-                        <NavLink className="login-logo" to="/create-account"><img src={facebook} alt="" /></NavLink>
+                        <NavLink onClick = {loginWithFacebook} className="login-logo" to="/create-account"><img src={facebook} alt="" /></NavLink>
                     </div>
                     <br />
                     <p><NavLink className="create" to="/create-account">Forgot password?</NavLink></p>

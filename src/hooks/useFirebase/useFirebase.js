@@ -1,5 +1,5 @@
 import initAuthentication from "../../firebase/firebase.init";
-import { GoogleAuthProvider, getAuth, signInWithPopup, onAuthStateChanged, signOut } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup, onAuthStateChanged, signOut, FacebookAuthProvider } from "firebase/auth";
 import { useEffect, useState } from "react";
 
 initAuthentication();
@@ -7,6 +7,7 @@ initAuthentication();
 const useFirebase = () => {
     const [user, setUser] = useState({});
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const auth = getAuth();
 
@@ -15,6 +16,7 @@ const useFirebase = () => {
         signInWithPopup(auth, googleProvider)
             .then(result => {
                 setUser(result.user);
+                setLoading(false);
                 console.log(result.user);
                 console.log(user);
             })
@@ -22,6 +24,22 @@ const useFirebase = () => {
                 setError(error.message);
         })
 
+    }
+
+    const loginWithFacebook = () => {
+        const facebookProvider = new FacebookAuthProvider();
+
+        signInWithPopup(auth, facebookProvider)
+            .then(result => {
+                setLoading(true);
+                console.log(result.user);
+                result.user.emailVerified = true;
+                setUser(result.user);
+                setLoading(false);
+            })
+            .catch(error => {
+                setError(error.message);
+        })
     }
 
     const logOut = () => {
@@ -33,10 +51,12 @@ const useFirebase = () => {
             setError(error.message);
         })
     }
+
     useEffect(() => {
         onAuthStateChanged(auth, user => {
             if (user) {
                 setUser(user);
+                setLoading(false);
             }
             else {
                 
@@ -44,6 +64,6 @@ const useFirebase = () => {
         })
     }, []);
 
-    return { loginWithGoogle, logOut, user, error, setUser, setError };
+    return { loginWithGoogle, loginWithFacebook, logOut, setUser, setError, setLoading, user, error, loading};
 }
 export default useFirebase;

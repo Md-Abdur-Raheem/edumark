@@ -3,31 +3,19 @@ header{
     top: 0;
     width: 100%;
     z-index: 1;
+    background: linear-gradient(90deg, hsla(272, 81%, 61%, 1) 0%, hsla(257, 76%, 55%, 1) 100%);
+    border-bottom: 1px dashed white;
 }
 
 .navigation{
-    background: linear-gradient(90deg, hsla(272, 81%, 61%, 1) 0%, hsla(257, 76%, 55%, 1) 100%);
     color: white;
     line-height: 50px;
-    border-bottom: 1px dashed white;
     width: 100%;
 }
 
 .user-photo{
-    width: 20%;
+    width: 10%;
     border-radius: 50%;
-}
-
-.selected{
-    border-bottom: 5px solid #04d2c8;
-}
-.dynamic-selected{
-    margin-bottom: 5px;
-    border-bottom: 5px solid #04d2c8;
-}
-
-.icon{
-    margin: 30px 0px 0px 150px;
 }
 
 .phone{
@@ -44,4 +32,3 @@ header{
     background-color: transparent;
     color: #fbbe36;
 }
-
