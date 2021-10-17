@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav, Navbar, Spinner } from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth/useAuth';
 import img from '../../media/logo.png'
@@ -19,11 +19,12 @@ const Header = () => {
     }
     
 
-    const { user, logOut, setLoading } = useAuth();
+    const { user, logOut } = useAuth();
+    // console.log(user);
 
-    if (setLoading) {
+   
         return (
-            <header>
+            <header className="fixed-top">
                 <Navbar expand="lg" className="navigation container">
                     <Navbar.Brand className="mx-auto" href="/home"><img src={img} alt="" /></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -34,8 +35,8 @@ const Header = () => {
                             <NavLink style={linkStyle} activeStyle={selected} to="/about"><i className="fas fa-info-circle me-1"></i> About</NavLink>
                             <NavLink style={linkStyle} activeStyle={selected} to="/contact"><i className="fas fa-envelope me-1"></i> Contact</NavLink>
                             <NavLink style={linkStyle} activeStyle={selected} to="/cart"><i className="fas fa-shopping-cart me-1"></i> Cart</NavLink>
-                            {
-                                user.emailVerified ? <NavLink onClick={logOut} style={linkStyle} to="/home"><img className="user-photo me-1" src={user.photoURL || userLogo} alt="" title={user.displayName}></img> Log Out</NavLink>
+                            {  
+                                user.email ? <NavLink onClick={logOut} style={linkStyle} to="/home"><img className="user-photo me-1" src={user.photoURL || userLogo} alt="" title={user.displayName}></img> Log Out</NavLink>
                                     : <div><NavLink style={linkStyle} activeStyle={selected} to="/register"><i className="fas fa-user-plus me-1"></i>Register</NavLink><NavLink style={linkStyle} activeStyle={selected} to="/login"><i className="fas fa-user me-1"></i> Log In</NavLink></div>
                             }
                             <p className="phone"><i className="fas fa-phone-alt"></i> +880 1700 08 00 10 07</p>
@@ -44,8 +45,8 @@ const Header = () => {
                 </Navbar>
             </header>
         );
-    }
-    return <Spinner animation="border" variant="primary" />;
+   
+    // return ;
     };
     
 

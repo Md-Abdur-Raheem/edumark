@@ -6,6 +6,7 @@ import './Courses.css'
 
 const Courses = () => {
     const [courses] = useFullCourse();
+    // console.log(courses);
     return (
         <div className = "courses-container">
             <Container className = "my-5 ">

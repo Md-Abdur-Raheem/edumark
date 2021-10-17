@@ -1,6 +1,6 @@
 header{
-    position: fixed;
-    top: 0;
+    /* position: fixed; */
+    /* top: 0; */
     width: 100%;
     z-index: 1;
     background: linear-gradient(90deg, hsla(272, 81%, 61%, 1) 0%, hsla(257, 76%, 55%, 1) 100%);
@@ -14,7 +14,7 @@ header{
 }
 
 .user-photo{
-    width: 10%;
+    width: 20%;
     border-radius: 50%;
 }
 

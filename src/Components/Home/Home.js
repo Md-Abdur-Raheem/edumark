@@ -9,6 +9,7 @@ import { useHistory } from 'react-router';
 const Home = () => {
     const history1 = useHistory();
     const history2 = useHistory();
+
     const handleBrowseBtn = () => {
         history1.push('/courses')
     }

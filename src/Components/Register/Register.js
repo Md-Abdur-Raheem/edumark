@@ -6,7 +6,7 @@ import google from '../../media/google.png';
 import facebook from '../../media/facebook.png';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth/useAuth';
-import { getAuth, createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 
 const Register = () => {
@@ -30,18 +30,10 @@ const Register = () => {
             createUserWithEmailAndPassword(auth, email, password)
             .then((result) => {
                 setUser(result.user);
-                verifyEmail();
                 setUserName();
-                alert(`A verification email has been sent to ${email}`);
             })
             .catch((error) => {
                 setError(error.message)
-            });
-        }
-
-        const verifyEmail = () => {
-            sendEmailVerification(auth.currentUser)
-            .then(() => {
             });
         }
 

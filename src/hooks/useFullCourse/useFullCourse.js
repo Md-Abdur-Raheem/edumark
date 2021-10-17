@@ -4,10 +4,10 @@ import { useState } from "react"
 const useFullCourse = () => {
     const [courses, setCourses] = useState([]);
     useEffect(() => {
-        fetch('./fullData.json')
+        fetch('/fullData.json')
             .then(res => res.json())
-            .then(data => setCourses(data));
+            .then(data => setCourses(data))
     }, [])
-    return [courses, setCourses]
+    return [courses, setCourses];
 }
 export default useFullCourse;

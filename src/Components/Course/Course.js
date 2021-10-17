@@ -1,15 +1,17 @@
 import React from 'react';
 import { Card, CardGroup, Col, Button } from 'react-bootstrap';
 import Rating from 'react-rating';
-import { useHistory } from 'react-router';
+import { NavLink } from 'react-router-dom';
+import { addToDb } from '../utilities/localStorage';
 import './Course.css'
 
 const Course = (props) => {
-    const { courseName, category, thumbs, rating, price} = props.course;
-    const history = useHistory();
-    const handleStartBtn = () => {
-        history.push('/login');
+    const { courseName, category, thumbs, rating, price, courseId } = props.course;
+    
+    const handleStartBtn = (courseId) => {
+        addToDb(courseId);
     }
+
     return (
         <Col lg={4}  className = "card-container mx-auto">
             <CardGroup className = "h-100">
@@ -21,7 +23,8 @@ const Course = (props) => {
                         <Card.Text style = {{color:"grey"}}>{category}</Card.Text>
                         <Card.Title  className = "card-title">{courseName}</Card.Title>
                     </Card.Body>
-                    <Button onClick = {handleStartBtn} className = "mb-2 start-btn w-50">Start</Button>
+                    <Button onClick={()=>{handleStartBtn(courseId)}} className="mb-2 start-btn w-50">Start</Button>
+                    <NavLink to={`/courseDetails/${courseId}`}>View Details</NavLink>
                     <Card.Footer className="foot">
                         <div className = "d-flex justify-content-between">
                             <div>

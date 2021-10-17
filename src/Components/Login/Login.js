@@ -7,22 +7,27 @@ import google from '../../media/google.png'
 import facebook from '../../media/facebook.png'
 import './Login.css';
 import useAuth from '../../hooks/useAuth/useAuth';
+import { useLocation, useHistory } from "react-router-dom";
+
 
 const Login = () => {
     const auth = getAuth();
     const { loginWithGoogle, loginWithFacebook, setError, error, setUser} = useAuth();
     const { register, handleSubmit, formState: { errors } } = useForm();
-    // const history = useHistory();
+
+    const location = useLocation();
+    const history = useHistory();
+    const redirectURL = location?.state?.from?.pathname || "/";
 
     const onSubmit = data => {
         const { email, password } = data;
-        // console.log(data);
 
         signInWithEmailAndPassword(auth, email, password)
             .then(result => {
                 console.log(result);
+                history.push(redirectURL);
                 const user = result.user;
-                user.emailVerified ? setUser(user) : alert('Email is not verifiefd yet');
+                setUser(user)
                 setError('');
             })
             .catch(error => {
@@ -54,8 +59,8 @@ const Login = () => {
                     <p><NavLink className="create" to="/register">Create Account</NavLink></p>
                     <div>
                         <p><b>Or log in with</b></p>
-                        <NavLink onClick = {loginWithGoogle} className="login-logo" to="/home"><img src={google} alt="" /></NavLink>
-                        <NavLink onClick = {loginWithFacebook} className="login-logo" to="/create-account"><img src={facebook} alt="" /></NavLink>
+                        <NavLink onClick= { loginWithGoogle }  className="login-logo" to={redirectURL}><img src={google} alt="" /></NavLink>
+                        <NavLink onClick = {loginWithFacebook} className="login-logo" to={redirectURL}><img src={facebook} alt="" /></NavLink>
                     </div>
                     <br />
                     <p><NavLink className="create" to="/create-account">Forgot password?</NavLink></p>
