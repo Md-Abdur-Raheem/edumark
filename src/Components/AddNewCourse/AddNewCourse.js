@@ -8,7 +8,7 @@ const AddNewCourse = () => {
         const { courseId, courseName, category, thumbs, rating, price, description } = data;
         const newCourse = { courseId, courseName, category, thumbs, rating, price, description };
         
-        fetch('http://localhost:5000/add-new-course', {
+        fetch('https://floating-ridge-99224.herokuapp.com/add-new-course', {
             method:"POST",
             headers: {
                 'content-type':"application/json"

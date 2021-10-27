@@ -4,7 +4,7 @@ import { useState } from "react"
 const useFullCourse = () => {
     const [courses, setCourses] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/all-courses')
+        fetch('https://floating-ridge-99224.herokuapp.com/all-courses')
             .then(res => res.json())
             .then(data => setCourses(data))
     }, [])

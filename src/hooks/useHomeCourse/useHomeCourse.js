@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 const useHomeCourse = () => {
     const [courses, setCourses] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/courses')
+        fetch('https://floating-ridge-99224.herokuapp.com/courses')
             .then(res => res.json())
             .then(data => setCourses(data));
     }, [])
