@@ -18,6 +18,7 @@ import AuthProvider from './context/AuthProvider';
 import Cart from './Components/Cart/Cart';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import CourseDetails from './Components/CourseDetails/CourseDetails';
+import AddNewPost from './Components/AddNewCourse/AddNewCourse';
 
 
 
@@ -68,6 +69,10 @@ function App() {
 
             <PrivateRoute path ="/confirmEnroll">
               <ConfirmEnroll></ConfirmEnroll>
+            </PrivateRoute>
+
+            <PrivateRoute path ="/addNewCourse">
+              <AddNewPost></AddNewPost>
             </PrivateRoute>
 
             <Route path = "*">
