@@ -44,5 +44,5 @@ const clearAllCourses = () => {
     localStorage.removeItem('courses');
 }
 
-export { addToDb, removeFromDb, clearAllCourses, getStoredCourses };
+export { addToDb, removeFromDb, clearAllCourses, getStoredCourses, updateDb };
     

@@ -6,7 +6,7 @@ import './CourseDetails.css';
 const CourseDetails = () => {
     const { id } = useParams();
 
-    const [courses] = useFullCourse();
+    const [courses] = useFullCourse(false);
     
     const filteredCourse = courses.filter(course => course.courseId == id);
    

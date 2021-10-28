@@ -5,7 +5,7 @@ import Course from '../Course/Course';
 import './Courses.css'
 
 const Courses = () => {
-    const [courses] = useFullCourse();
+    const [courses] = useFullCourse(false);
     // console.log(courses);
     return (
         <div className = "courses-container">

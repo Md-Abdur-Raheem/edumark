@@ -19,6 +19,7 @@ import Cart from './Components/Cart/Cart';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import CourseDetails from './Components/CourseDetails/CourseDetails';
 import AddNewPost from './Components/AddNewCourse/AddNewCourse';
+import ManageCourse from './Components/ManageCourse/ManageCourse';
 
 
 
@@ -73,6 +74,10 @@ function App() {
 
             <PrivateRoute path ="/addNewCourse">
               <AddNewPost></AddNewPost>
+            </PrivateRoute>
+
+            <PrivateRoute path ="/manageCourse">
+              <ManageCourse></ManageCourse>
             </PrivateRoute>
 
             <Route path = "*">

@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Table } from 'react-bootstrap';
 import useCourses from '../../hooks/useCourses/useCourses';
-import useFullCourse from '../../hooks/useFullCourse/useFullCourse';
 import AddedCourse from '../AddedCourse/AddedCourse';
+import { removeFromDb } from '../utilities/localStorage';
 import './Cart.css'
 
 const Cart = () => {
-    const [courses] = useFullCourse();
-    const [course] = useCourses(courses);
+    const [updating, setUpdating] = useState(false);
+    const [course] = useCourses(updating);
+
+    const handleDelete = (id) => {
+        const confirmation = window.confirm('are you sure?');
+        if (confirmation) {
+            removeFromDb(id);
+            setUpdating(true);
+        }
+    }
 
     return (
         <div className = "cart-container container">
@@ -23,7 +31,7 @@ const Cart = () => {
                 </thead>
                 <tbody>
                     {
-                        course.map(crs => <AddedCourse key={crs.courseId} course={crs}></AddedCourse>)
+                        course.map(crs => <AddedCourse key={crs.courseId} course={crs} handleDelete={handleDelete}></AddedCourse>)
                     }
                 </tbody>
 
