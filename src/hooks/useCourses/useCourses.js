@@ -7,11 +7,9 @@ const useCourses = courses =>{
     useEffect(() => {
         if (courses.length) {
             const savedCourse = getStoredCourses();
-            console.log(savedCourse);
             const storedCourse = [];
             for (const key in savedCourse) {
-                const addedCourses = courses.find(course => course.courseId == key);
-                console.log(addedCourses);
+                const addedCourses = courses.find(course => parseInt(course.courseId) === parseInt(key));
                 if (addedCourses) {
                     storedCourse.push(addedCourses);
                 }

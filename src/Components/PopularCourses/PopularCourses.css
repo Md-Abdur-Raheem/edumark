@@ -12,5 +12,5 @@
 }
 .more-btn:hover{
     background-color: #04d2c8;
-    border: none;
+    border: 1px solid transparent;
 }
