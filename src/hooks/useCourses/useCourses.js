@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react"
 import { getStoredCourses } from "../../Components/utilities/localStorage";
+import useAddedCourse from "../useAddedCourse/useAddedCourse";
 
 const useCourses = (updating) =>{
     const [course, setCourse] = useState([]);
+    const [addedCourseId] = useAddedCourse();
+    const addedId = addedCourseId.map(a => a.addedCourses);
 
     useEffect(() => {
-            const savedCourse = getStoredCourses();
-            const id = Object.keys(savedCourse);
+        const savedCourse = getStoredCourses();
+        // const id = Object.keys(savedCourse);
+        const id = addedId;        
             fetch('https://floating-ridge-99224.herokuapp.com/all-courses/byCourseId', {
                 method: "POST",
                 headers: {
@@ -28,7 +32,7 @@ const useCourses = (updating) =>{
                 }
             })
             
-    }, [updating])
+    }, [updating, addedId])
     
     return [course, setCourse];
 }

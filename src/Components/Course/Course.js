@@ -2,14 +2,24 @@ import React from 'react';
 import { Card, CardGroup, Col, Button } from 'react-bootstrap';
 import Rating from 'react-rating';
 import { NavLink } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth/useAuth';
 import { addToDb } from '../utilities/localStorage';
 import './Course.css'
 
 const Course = (props) => {
+    const { user } = useAuth();
     const { courseName, category, thumbs, rating, price, courseId } = props.course;
     
     const handleStartBtn = (courseId) => {
         addToDb(courseId);
+        const newCourse = { email: user.email, addedCourses: courseId };
+        fetch('http://localhost:5000/addedCourse', {
+            method: "POST",
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(newCourse)
+        })
+            .then(res => res.json())
+        .then(data => console.log(data))
     }
 
     return (
