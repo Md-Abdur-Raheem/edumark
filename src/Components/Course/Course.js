@@ -1,25 +1,42 @@
 import React from 'react';
+import { useState } from 'react';
 import { Card, CardGroup, Col, Button } from 'react-bootstrap';
 import Rating from 'react-rating';
 import { NavLink } from 'react-router-dom';
+import useAddedCourse from '../../hooks/useAddedCourse/useAddedCourse';
 import useAuth from '../../hooks/useAuth/useAuth';
-import { addToDb } from '../utilities/localStorage';
 import './Course.css'
 
 const Course = (props) => {
+    const [control, setControl] = useState(false);
     const { user } = useAuth();
-    const { courseName, category, thumbs, rating, price, courseId } = props.course;
+    const { course } = props;
+    const { courseName, category, thumbs, rating, price, _id } = props.course;
+    const [addedCourse] = useAddedCourse(control);
     
-    const handleStartBtn = (courseId) => {
-        addToDb(courseId);
-        const newCourse = { email: user.email, addedCourses: courseId };
-        fetch('http://localhost:5000/addedCourse', {
-            method: "POST",
-            headers: { 'content-type': 'application/json' },
-            body: JSON.stringify(newCourse)
-        })
-            .then(res => res.json())
-        .then(data => console.log(data))
+    const handleStartBtn = (course, _id) => {
+        const isAdded = addedCourse.find(c => c?.addedCourses?._id === _id);
+        if (isAdded) {
+            alert('Already added')
+            return;
+        }
+        else {
+            const newCourse = { email: user.email, addedCourses: course };
+            fetch('http://localhost:5000/addedCourse', {
+                method: "POST",
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify(newCourse)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.insertedId) {
+                        alert('Course added successfully');
+                        setControl(!control)
+                    }
+                    
+
+                })
+            }
     }
 
     return (
@@ -33,8 +50,8 @@ const Course = (props) => {
                         <Card.Text style = {{color:"grey"}}>{category}</Card.Text>
                         <Card.Title  className = "card-title">{courseName}</Card.Title>
                     </Card.Body>
-                    <Button onClick={()=>{handleStartBtn(courseId)}} className="mb-2 start-btn w-50">Start</Button>
-                    <NavLink to={`/courseDetails/${courseId}`}>View Details</NavLink>
+                    <Button onClick={()=>{handleStartBtn(course, _id)}} className="mb-2 start-btn w-50">Start</Button>
+                    <NavLink to={`/courseDetails/${_id}`}>View Details</NavLink>
                     <Card.Footer className="foot">
                         <div className = "d-flex justify-content-between">
                             <div>

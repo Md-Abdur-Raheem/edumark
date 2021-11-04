@@ -18,9 +18,7 @@ const Header = () => {
         color: "#04d2c8"
     }
     
-
     const { user, logOut } = useAuth();
-    // console.log(user);
 
    
         return (

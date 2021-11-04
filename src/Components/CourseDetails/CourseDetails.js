@@ -1,20 +1,21 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router';
-import useFullCourse from '../../hooks/useFullCourse/useFullCourse';
 import './CourseDetails.css';
 
 const CourseDetails = () => {
     const { id } = useParams();
-
-    const [courses] = useFullCourse(false);
-    
-    const filteredCourse = courses.filter(course => course.courseId == id);
+    const [course, setCourse] = useState({});
+    useEffect(() => {
+        fetch(`http://localhost:5000/all-course/${id}`)
+            .then(res => res.json())
+        .then(data => setCourse(data))
+    },[id])
    
     return (
         <div className="details-container">
-            {
-                filteredCourse.length && <h1>{filteredCourse[0].courseName}</h1>
-            }
+            <h1>{ course?.courseName }</h1>
         </div>
     );
 };

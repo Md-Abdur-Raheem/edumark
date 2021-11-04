@@ -1,20 +1,35 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
 import { Table } from 'react-bootstrap';
-import useCourses from '../../hooks/useCourses/useCourses';
+import useAddedCourse from '../../hooks/useAddedCourse/useAddedCourse';
 import AddedCourse from '../AddedCourse/AddedCourse';
-import { removeFromDb } from '../utilities/localStorage';
 import './Cart.css'
 
 const Cart = () => {
-    const [updating, setUpdating] = useState(false);
-    const [course] = useCourses(updating);
+    const [control, setControl] = useState(false);
+    const [addedCourse] = useAddedCourse(control);
+
+
 
     const handleDelete = (id) => {
-        const confirmation = window.confirm('are you sure?');
+        const confirmation = window.confirm('Are you sure to delete the course?');
         if (confirmation) {
-            removeFromDb(id);
-            setUpdating(true);
+            fetch(`http://localhost:5000/addedCourse/${id}`, {
+            method: "DELETE",
+            headers:{"content-type": "application/json"}
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount) {
+                    alert('Successfully deleted');
+                    setControl(!control);
+                }    
+            })
         }
+        else {
+            return;
+        }
+        
     }
 
     return (
@@ -31,7 +46,7 @@ const Cart = () => {
                 </thead>
                 <tbody>
                     {
-                        course.map(crs => <AddedCourse key={crs.courseId} course={crs} handleDelete={handleDelete}></AddedCourse>)
+                        addedCourse.map((crs, index) => <AddedCourse key={crs.addedCourses._id} course={crs} index={index} handleDelete={()=>handleDelete(crs?._id)}></AddedCourse>)
                     }
                 </tbody>
 

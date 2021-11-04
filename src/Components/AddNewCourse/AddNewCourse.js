@@ -37,7 +37,7 @@ const AddNewCourse = () => {
                 <input className="px-2 py-1 w-25" type="text" placeholder="Category" {...register("category", { required: true })} />
                 <br /><br />
                 <label className="me-3">Img URL :</label>
-                <input className="px-2 py-1 w-25" type="text" placeholder="Img URL" {...register("thumbs", { required: true })} />
+                <input className="px-2 py-1 w-25" type="text" placeholder="Img URL" defaultValue="https://i.ibb.co/m413Dmf/alison-icon-default.png" {...register("thumbs", { required: true })} />
                 <br /><br />
                 <label className="me-3">Rating :</label>
                 <input className="px-2 py-1 w-25" type="text" placeholder="Rating" {...register("rating", { required: true })} />

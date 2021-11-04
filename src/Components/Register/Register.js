@@ -17,8 +17,7 @@ const Register = () => {
 
     const onSubmit = data => {
         const auth = getAuth();
-        const { name, email, password, rePassword, photo } = data;
-        // console.log(photo[0].name);
+        const { name, email, password, rePassword, /* photo  */} = data;
 
         if (password !== rePassword) {
             setError("Password doesn't match");
