@@ -20,6 +20,7 @@ import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import CourseDetails from './Components/CourseDetails/CourseDetails';
 import AddNewPost from './Components/AddNewCourse/AddNewCourse';
 import ManageCourse from './Components/ManageCourse/ManageCourse';
+import ManageOrders from './Components/ManageOrders/ManageOrders';
 
 
 
@@ -78,6 +79,10 @@ function App() {
 
             <PrivateRoute path ="/manageCourse">
               <ManageCourse></ManageCourse>
+            </PrivateRoute>
+
+            <PrivateRoute path ="/manageOrders">
+              <ManageOrders></ManageOrders>
             </PrivateRoute>
 
             <Route path = "*">

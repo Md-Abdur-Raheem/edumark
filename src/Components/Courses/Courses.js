@@ -11,7 +11,7 @@ const Courses = () => {
             <Container className = "my-5 ">
                 <Row className ="gy-4">
                     {
-                        courses.map(course => <Course key={course.courseId} course = {course}></Course>)
+                        courses.map(course => <Course key={course._id} course = {course}></Course>)
                     }
                 </Row>
             </Container>

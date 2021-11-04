@@ -13,9 +13,10 @@ const Course = (props) => {
     const { course } = props;
     const { courseName, category, thumbs, rating, price, _id } = props.course;
     const [addedCourse] = useAddedCourse(control);
+
     
-    const handleStartBtn = (course, _id) => {
-        const isAdded = addedCourse.find(c => c?.addedCourses?._id === _id);
+    const handleStartBtn = (course, id) => {
+        const isAdded = addedCourse.find(c => c?.addedCourses?._id === id);
         if (isAdded) {
             alert('Already added')
             return;
@@ -31,12 +32,10 @@ const Course = (props) => {
                 .then(data => {
                     if (data.insertedId) {
                         alert('Course added successfully');
-                        setControl(!control)
+                        setControl(!control);
                     }
-                    
-
                 })
-            }
+        }
     }
 
     return (

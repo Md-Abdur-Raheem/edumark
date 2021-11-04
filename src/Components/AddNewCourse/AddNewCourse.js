@@ -5,8 +5,8 @@ import './AddNewCourse.css'
 const AddNewCourse = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
-        const { courseId, courseName, category, thumbs, rating, price, description } = data;
-        const newCourse = { courseId, courseName, category, thumbs, rating, price, description };
+        const { courseName, category, thumbs, rating, price, description } = data;
+        const newCourse = { courseName, category, thumbs, rating, price, description };
         
         fetch('https://floating-ridge-99224.herokuapp.com/add-new-course', {
             method:"POST",
@@ -27,25 +27,22 @@ const AddNewCourse = () => {
     return (
         <div className="add-new-container">
             <form onSubmit={handleSubmit(onSubmit)}>
-                <label className="me-3">Courseid :</label>
-                <input className="px-2 py-1 w-25" type="number" placeholder="Course ID" {...register("courseId", { required: true })} />
-                <br /><br />
                 <label className="me-3">Course Name :</label>
                 <input className="px-2 py-1 w-25"  type="text" placeholder="Course Name" {...register("courseName", { required: true })} />
                 <br /><br />
-                <label className="me-3">Category :</label>
+                <label className="me-5">Category :</label>
                 <input className="px-2 py-1 w-25" type="text" placeholder="Category" {...register("category", { required: true })} />
                 <br /><br />
-                <label className="me-3">Img URL :</label>
-                <input className="px-2 py-1 w-25" type="text" placeholder="Img URL" defaultValue="https://i.ibb.co/m413Dmf/alison-icon-default.png" {...register("thumbs", { required: true })} />
+                <label className="me-5">Img URL :</label>
+                <input className="ms-1 px-2 py-1 w-25" type="text" placeholder="Img URL" defaultValue="https://i.ibb.co/m413Dmf/alison-icon-default.png" {...register("thumbs", { required: true })} />
                 <br /><br />
-                <label className="me-3">Rating :</label>
-                <input className="px-2 py-1 w-25" type="text" placeholder="Rating" {...register("rating", { required: true })} />
+                <label className="me-5">Rating :</label>
+                <input className="ms-3 px-2 py-1 w-25" type="text" placeholder="Rating" {...register("rating", { required: true })} />
                 <br /><br />
-                <label className="me-3">Price :</label>
-                <input className="px-2 py-1 w-25" type="number" placeholder="Price" {...register("price", { required: true })} />
+                <label className="me-5">Price :</label>
+                <input className="ms-4 px-2 py-1 w-25" type="number" placeholder="Price" {...register("price", { required: true })} />
                 <br /><br />
-                <textarea className="px-2 py-1 w-25 h-25" type="number" placeholder="Description" {...register("description", { required: true })} />
+                <textarea className="p-4 py-1 w-50" rows="10" type="number" placeholder="Description" {...register("description", { required: true })} />
                 <br /><br />
                 {errors.exampleRequired && <span>This field is required</span>}
       
