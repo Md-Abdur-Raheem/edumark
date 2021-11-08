@@ -6,46 +6,23 @@ import google from '../../media/google.png';
 import facebook from '../../media/facebook.png';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth/useAuth';
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 
 const Register = () => {
 
-    const { loginWithGoogle, error, setError, setUser } = useAuth();
+    const { loginWithGoogle, error, setError, registerUser } = useAuth();
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = data => {
-        const auth = getAuth();
-        const { name, email, password, rePassword, /* photo  */} = data;
+        const { name, email, password, rePassword } = data;
 
         if (password !== rePassword) {
             setError("Password doesn't match");
             return;
         }
         else {
-            setError('');
-
-            createUserWithEmailAndPassword(auth, email, password)
-            .then((result) => {
-                setUser(result.user);
-                setUserName();
-            })
-            .catch((error) => {
-                setError(error.message)
-            });
-        }
-
-        const setUserName = () => {
-            updateProfile(auth.currentUser, {
-                displayName: name,/*  photoURL : photo[0].name */
-            })
-                .then((result) => {
-                    console.log(result);
-                })
-                .catch((error) => {
-                    setError(error.message);
-              });
+            registerUser(email, password, name)
         }
     }
 

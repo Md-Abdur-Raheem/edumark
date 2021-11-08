@@ -1,7 +1,6 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 import { NavLink, } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import img from '../../media/login.png';
 import google from '../../media/google.png'
 import facebook from '../../media/facebook.png'
@@ -11,8 +10,8 @@ import { useLocation, useHistory } from "react-router-dom";
 
 
 const Login = () => {
-    const auth = getAuth();
-    const { loginWithGoogle, loginWithFacebook, setError, error, setUser} = useAuth();
+    // const auth = getAuth();
+    const { loginWithGoogle, loginWithFacebook, error, login} = useAuth();
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const location = useLocation();
@@ -21,18 +20,7 @@ const Login = () => {
 
     const onSubmit = data => {
         const { email, password } = data;
-
-        signInWithEmailAndPassword(auth, email, password)
-            .then(result => {
-                console.log(result);
-                history.push(redirectURL);
-                const user = result.user;
-                setUser(user)
-                setError('');
-            })
-            .catch(error => {
-            setError(error.message);
-        })
+        login(email, password, location, history);
     }
 
     return (

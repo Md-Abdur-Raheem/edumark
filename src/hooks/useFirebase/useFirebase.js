@@ -1,5 +1,5 @@
 import initAuthentication from "../../firebase/firebase.init";
-import { GoogleAuthProvider, getAuth, signInWithPopup, onAuthStateChanged, signOut, FacebookAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup, onAuthStateChanged, signOut, FacebookAuthProvider, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword } from "firebase/auth";
 import { useEffect, useState } from "react";
 
 
@@ -10,7 +10,30 @@ const useFirebase = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
 
+
     const auth = getAuth();
+
+    const registerUser = (email, password, name) => {
+        setError('');
+        setLoading(true);
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((result) => {
+                updateProfile(auth.currentUser, {
+                    displayName: name
+                })
+                    .then((result) => {
+                    })
+                    .catch((error) => {
+                        setError(error.message);
+                    });
+                setUser(result.user);
+                saveUser(name, email, 'POST');
+                setLoading(false);
+        })
+        .catch((error) => {
+            setError(error.message)
+        });
+    }
 
     const loginWithGoogle = () => {
         setLoading(true)
@@ -18,6 +41,7 @@ const useFirebase = () => {
         signInWithPopup(auth, googleProvider)
             .then(result => {
                 setUser(result.user);
+                saveUser(result.user.displayName, result.user.email, 'PUT');
             })
             .catch(error => {
                 setError(error.message);
@@ -31,14 +55,28 @@ const useFirebase = () => {
 
         signInWithPopup(auth, facebookProvider)
             .then(result => {
-                console.log(result.user);
                 result.user.emailVerified = true;
                 setUser(result.user);
+                saveUser(result.user.displayName, result.user.email, 'PUT')
             })
             .catch(error => {
                 setError(error.message);
             })
             .finally(() => setLoading(false))
+    }
+
+    const login = (email, password, location, history) => {
+        signInWithEmailAndPassword(auth, email, password)
+            .then(result => {
+                const destination = location.state?.from || '/';
+                history.replace(destination);
+                const user = result.user;
+                setUser(user)
+                setError('');
+            })
+            .catch(error => {
+            setError(error.message);
+        })
     }
 
     const logOut = () => {
@@ -63,8 +101,23 @@ const useFirebase = () => {
             }
             setLoading(false);
         })
-    }, []);
+    }, [auth]);
 
-    return { loginWithGoogle, loginWithFacebook, logOut, setUser, setError, setLoading,  user, error, loading };
+    const saveUser = (name, email, method) => {
+        const newUser = { name, email };
+        fetch('http://localhost:5000/users', {
+            method: method,
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(newUser)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.upsertedId || data.insertedId) {
+                    alert('Registered successfully')
+                }
+            })
+    }
+
+    return { registerUser, loginWithGoogle, loginWithFacebook, logOut, setUser, setError, setLoading, login,  user, error, loading };
 }
 export default useFirebase;
