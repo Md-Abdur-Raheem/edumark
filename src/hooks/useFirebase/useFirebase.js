@@ -9,6 +9,7 @@ const useFirebase = () => {
     const [user, setUser] = useState({});
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
+    const [admin, setAdmin] = useState(false);
 
 
     const auth = getAuth();
@@ -95,6 +96,7 @@ const useFirebase = () => {
         onAuthStateChanged(auth, user => {
             if (user) {
                 setUser(user);
+                checkAdmin(user.email);
             }
             else {
                 setUser({});
@@ -118,6 +120,13 @@ const useFirebase = () => {
             })
     }
 
-    return { registerUser, loginWithGoogle, loginWithFacebook, logOut, setUser, setError, setLoading, login,  user, error, loading };
+    const checkAdmin = email => {
+        fetch(`http://localhost:5000/users/admin/${email}`)
+            .then(res => res.json())
+            .then(data => setAdmin(data.isAdmin))
+    }
+
+
+    return { registerUser, loginWithGoogle, loginWithFacebook, logOut, setUser, setError, setLoading, login,  user, error, loading, admin };
 }
 export default useFirebase;

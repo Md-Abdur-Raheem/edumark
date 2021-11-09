@@ -21,6 +21,8 @@ import CourseDetails from './Components/CourseDetails/CourseDetails';
 import AddNewPost from './Components/AddNewCourse/AddNewCourse';
 import ManageCourse from './Components/ManageCourse/ManageCourse';
 import ManageOrders from './Components/ManageOrders/ManageOrders';
+import AdminPanel from './Components/AdminPanel/AdminPanel';
+import AdminRoute from './Components/AdminRoute/AdminRoute';
 
 
 
@@ -73,17 +75,21 @@ function App() {
               <ConfirmEnroll></ConfirmEnroll>
             </PrivateRoute>
 
-            <PrivateRoute path ="/addNewCourse">
+            <AdminRoute path ="/adinPanel">
+              <AdminPanel></AdminPanel>
+            </AdminRoute>
+
+            <AdminRoute path ="/addNewCourse">
               <AddNewPost></AddNewPost>
-            </PrivateRoute>
+            </AdminRoute>
 
-            <PrivateRoute path ="/manageCourse">
+            <AdminRoute path ="/manageCourse">
               <ManageCourse></ManageCourse>
-            </PrivateRoute>
+            </AdminRoute>
 
-            <PrivateRoute path ="/manageOrders">
+            <AdminRoute path ="/manageOrders">
               <ManageOrders></ManageOrders>
-            </PrivateRoute>
+            </AdminRoute>
 
             <Route path = "*">
               <NotFound></NotFound>

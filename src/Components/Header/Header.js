@@ -19,7 +19,7 @@ const Header = () => {
         color: "#04d2c8"
     }
     
-    const { user, logOut } = useAuth();
+    const { user, logOut, admin } = useAuth();
 
    
         return (
@@ -45,9 +45,14 @@ const Header = () => {
                                             title={user.displayName}
                                             variant="light" id="dropdown-basic"></Dropdown.Toggle>
                                     <Dropdown.Menu>
-                                        <Dropdown.Item as = {NavLink}  to="/addNewCourse"><b>Add New Course</b></Dropdown.Item>
-                                        <Dropdown.Item as = {NavLink} to="/manageCourse"><b>Manage Courses</b></Dropdown.Item>
-                                        <Dropdown.Item as = {NavLink} to="/manageOrders"><b>Manage Orders</b></Dropdown.Item>
+                                            {
+                                                admin && <>
+                                                     <Dropdown.Item as = {NavLink}  to="/adinPanel"><b>Admin Panel</b></Dropdown.Item>
+                                                    <Dropdown.Item as = {NavLink}  to="/addNewCourse"><b>Add New Course</b></Dropdown.Item>
+                                                    <Dropdown.Item as = {NavLink} to="/manageCourse"><b>Manage Courses</b></Dropdown.Item>
+                                                    <Dropdown.Item as = {NavLink} to="/manageOrders"><b>Manage Orders</b></Dropdown.Item>
+                                                </>
+                                            }
                                         <Dropdown.Item as = {Button} onClick={logOut} to="/home"><b>Log out</b></Dropdown.Item>
                                     </Dropdown.Menu>
                                     </Dropdown>
