@@ -6,7 +6,7 @@ const useAddedCourse = (control) => {
     const [addedCourse, setAddedCourse] = useState([]);
     const { user } = useAuth();
     useEffect(() => {
-        fetch(`http://localhost:5000/addedCourse?email=${user.email}`)
+        fetch(`https://floating-ridge-99224.herokuapp.com/addedCourse?email=${user.email}`)
         .then(res => res.json())
         .then(data =>  setAddedCourse(data))
     }, [user.email, control])

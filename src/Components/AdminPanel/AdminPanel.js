@@ -13,7 +13,7 @@ const AdminPanel = () => {
     const [control, setControl] = useState(false);
 
     useEffect(() => {
-        fetch('http://localhost:5000/users/admin?query=Admin')
+        fetch('https://floating-ridge-99224.herokuapp.com/users/admin?query=Admin')
             .then(res => res.json())
             .then(data => setAdmins(data))
     },[control])
@@ -26,7 +26,7 @@ const AdminPanel = () => {
     const handleOnSubmit = e => {
         e.preventDefault();
         const admin = { email };
-        fetch('http://localhost:5000/users/admin', {
+        fetch('https://floating-ridge-99224.herokuapp.com/users/admin', {
             method: "PUT",
             headers: {
                 'authorization': `Bearer ${token}`,
@@ -50,7 +50,7 @@ const AdminPanel = () => {
     const handleRemove = email => {
         const confirmation = window.confirm('Are you sure you to remove this person from admin panel?');
         if (confirmation) {
-            fetch(`http://localhost:5000/users/admin/${email}`, {
+            fetch(`https://floating-ridge-99224.herokuapp.com/users/admin/${email}`, {
             method: 'PUT',
             headers:{'content-type':'application/json'}
         })

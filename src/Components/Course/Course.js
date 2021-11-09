@@ -23,7 +23,7 @@ const Course = (props) => {
         }
         else {
             const newCourse = { email: user.email, addedCourses: course };
-            fetch('http://localhost:5000/addedCourse', {
+            fetch('https://floating-ridge-99224.herokuapp.com/addedCourse', {
                 method: "POST",
                 headers: { 'content-type': 'application/json' },
                 body: JSON.stringify(newCourse)

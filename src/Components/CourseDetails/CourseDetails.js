@@ -8,7 +8,7 @@ const CourseDetails = () => {
     const { id } = useParams();
     const [course, setCourse] = useState({});
     useEffect(() => {
-        fetch(`http://localhost:5000/all-course/${id}`)
+        fetch(`https://floating-ridge-99224.herokuapp.com/all-course/${id}`)
             .then(res => res.json())
         .then(data => setCourse(data))
     },[id])

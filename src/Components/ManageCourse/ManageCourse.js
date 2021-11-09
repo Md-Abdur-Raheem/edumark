@@ -23,7 +23,7 @@ const ManageCourse = () => {
 
                         const sameAddedCourse = allAddedCourse.filter(c => c.addedCourses._id === id);
                         if (sameAddedCourse) {
-                            sameAddedCourse.map(s => fetch(`http://localhost:5000/addedCourse/${s?._id}`, {
+                            sameAddedCourse.map(s => fetch(`https://floating-ridge-99224.herokuapp.com/addedCourse/${s?._id}`, {
                                 method: "DELETE",
                                 headers:{"content-type": "application/json"}
                                 })

@@ -14,7 +14,7 @@ const Cart = () => {
     const handleDelete = (id) => {
         const confirmation = window.confirm('Are you sure to delete the course?');
         if (confirmation) {
-            fetch(`http://localhost:5000/addedCourse/${id}`, {
+            fetch(`https://floating-ridge-99224.herokuapp.com/addedCourse/${id}`, {
             method: "DELETE",
             headers:{"content-type": "application/json"}
             })
