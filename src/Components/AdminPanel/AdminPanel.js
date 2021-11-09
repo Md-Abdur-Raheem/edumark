@@ -2,8 +2,10 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { Button, Form, Modal, Table } from 'react-bootstrap';
+import useAuth from '../../hooks/useAuth/useAuth';
 
 const AdminPanel = () => {
+    const { token } = useAuth();
     const [smSuccessShow, setSmSuccessShow] = useState(false);
     const [smShow, setSmShow] = useState(false);
     const [email, setEmail] = useState('');
@@ -23,10 +25,13 @@ const AdminPanel = () => {
 
     const handleOnSubmit = e => {
         e.preventDefault();
-        const admin = { email }
+        const admin = { email };
         fetch('http://localhost:5000/users/admin', {
             method: "PUT",
-            headers: { 'content-type': 'application/json' },
+            headers: {
+                'authorization': `Bearer ${token}`,
+                'content-type': 'application/json'
+            },
             body: JSON.stringify(admin)
         })
             .then(res => res.json())

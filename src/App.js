@@ -75,7 +75,7 @@ function App() {
               <ConfirmEnroll></ConfirmEnroll>
             </PrivateRoute>
 
-            <AdminRoute path ="/adinPanel">
+            <AdminRoute path ="/adminPanel">
               <AdminPanel></AdminPanel>
             </AdminRoute>
 

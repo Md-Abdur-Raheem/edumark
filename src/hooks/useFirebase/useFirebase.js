@@ -1,5 +1,5 @@
 import initAuthentication from "../../firebase/firebase.init";
-import { GoogleAuthProvider, getAuth, signInWithPopup, onAuthStateChanged, signOut, FacebookAuthProvider, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup, onAuthStateChanged, signOut, FacebookAuthProvider, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, getIdToken } from "firebase/auth";
 import { useEffect, useState } from "react";
 
 
@@ -10,6 +10,7 @@ const useFirebase = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
     const [admin, setAdmin] = useState(false);
+    const [token, setToken] = useState('');
 
 
     const auth = getAuth();
@@ -23,6 +24,7 @@ const useFirebase = () => {
                     displayName: name
                 })
                     .then((result) => {
+                        setUser(result?.user);
                     })
                     .catch((error) => {
                         setError(error.message);
@@ -96,7 +98,9 @@ const useFirebase = () => {
         onAuthStateChanged(auth, user => {
             if (user) {
                 setUser(user);
-                checkAdmin(user.email);
+                // checkAdmin(user.email);
+                getIdToken(user)
+                    .then(idToken => setToken(idToken));
             }
             else {
                 setUser({});
@@ -104,6 +108,15 @@ const useFirebase = () => {
             setLoading(false);
         })
     }, [auth]);
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/users/${user.email}`)
+            .then(res => res.json())
+            .then(data => {
+                setAdmin(data.isAdmin)
+            })
+    },[user.email])
+   
 
     const saveUser = (name, email, method) => {
         const newUser = { name, email };
@@ -120,13 +133,8 @@ const useFirebase = () => {
             })
     }
 
-    const checkAdmin = email => {
-        fetch(`http://localhost:5000/users/admin/${email}`)
-            .then(res => res.json())
-            .then(data => setAdmin(data.isAdmin))
-    }
 
 
-    return { registerUser, loginWithGoogle, loginWithFacebook, logOut, setUser, setError, setLoading, login,  user, error, loading, admin };
+    return { registerUser, loginWithGoogle, loginWithFacebook, logOut, setUser, setError, setLoading, login,  user, error, loading, admin, token };
 }
 export default useFirebase;

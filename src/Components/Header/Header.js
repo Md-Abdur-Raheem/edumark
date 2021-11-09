@@ -47,7 +47,7 @@ const Header = () => {
                                     <Dropdown.Menu>
                                             {
                                                 admin && <>
-                                                     <Dropdown.Item as = {NavLink}  to="/adinPanel"><b>Admin Panel</b></Dropdown.Item>
+                                                    <Dropdown.Item as = {NavLink}  to="/adminPanel"><b>Admin Panel</b></Dropdown.Item>
                                                     <Dropdown.Item as = {NavLink}  to="/addNewCourse"><b>Add New Course</b></Dropdown.Item>
                                                     <Dropdown.Item as = {NavLink} to="/manageCourse"><b>Manage Courses</b></Dropdown.Item>
                                                     <Dropdown.Item as = {NavLink} to="/manageOrders"><b>Manage Orders</b></Dropdown.Item>
